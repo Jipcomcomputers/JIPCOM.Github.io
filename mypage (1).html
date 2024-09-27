@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIPCOM Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .card {
+            width: 140mm;
+            height: 70mm;
+            border: 1px solid #000;
+            background-color: #fff;
+            position: relative;
+            padding: 5mm;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .qrcode {
+            width: 40mm;
+            height: 40mm;
+            margin-bottom: 3mm;
+            margin-top: 10mm;
+        }
+        .username {
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5mm;
+        }
+        .corner-text {
+            font-size: 6px;
+            position: absolute;
+            text-align: center;
+            width: calc(100% - 10mm);
+        }
+        .top-left {
+            top: 1mm;
+            left: 5mm;
+        }
+        .bottom-right {
+            bottom: 3mm;
+            right: 5mm;
+        }
+        .input-container {
+            margin-bottom: 10px;
+        }
+        .input-container input {
+            padding: 5px;
+            font-size: 14px;
+        }
+        .input-container button {
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        /* Hide input fields and buttons when printing */
+        @media print {
+            .input-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <input type="text" id="username" placeholder="Enter your username">
+        <button onclick="updateCard()">Update Card</button>
+        <button onclick="window.print()">Print</button>
+    </div>
+
+    <div class="card" id="invitationCard">
+        <div class="corner-text top-left">
+            Error: Code Execution Glitch<br>
+            Hex Code: 20 20 20 47 6C 6F 72 79 20 74 6F 20 47 6F 64 20 61 6C 6F 6E 65<br>
+            System Notification: Please Stand By.
+        </div>
+        <img src="https://static2.yooco.de/n2/e4/790639/u/7f/3837881/storage/qrcode_24.png" alt="QR Code" class="qrcode">
+        <div class="username" id="cardUsername">Your Username</div>
+        <div class="corner-text bottom-right">
+            JIPCOM: Fostering Connections, Unlocking New Horizons
+        </div>
+    </div>
+
+    <script>
+        function updateCard() {
+            var usernameInput = document.getElementById('username').value;
+            var cardUsername = document.getElementById('cardUsername');
+            cardUsername.textContent = usernameInput ? usernameInput : 'Your Username';
+        }
+    </script>
+</body>
+</html>
